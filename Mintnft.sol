@@ -1,7 +1,7 @@
 pragma solidity ^0.8.25;
 
 
-contract MetaDogeUnityPass is ERC1155,ERC2981, Ownable {
+contract MetaDogeUnityNFT is ERC1155,ERC2981, Ownable {
     constructor(uint96 _royaltyFeesInBips) ERC1155("") Ownable(msg.sender) {
                 setRoyaltyInfo(owner(), _royaltyFeesInBips);
 
