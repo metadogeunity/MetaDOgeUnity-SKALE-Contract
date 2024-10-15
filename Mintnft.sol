@@ -63,11 +63,7 @@ contract MetaDogeUnityPass is ERC1155,ERC2981, Ownable {
      }
 
 
-        function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(ERC1155, ERC2981)
+        function supportsInterface(bytes4 interfaceId) public view virtual override(ERC1155, ERC2981)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
