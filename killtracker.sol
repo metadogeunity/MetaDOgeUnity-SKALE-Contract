@@ -19,7 +19,7 @@ contract MetaDogeUnityKillTracker is AccessControl {
 
     // Event to log when a kill is recorded
     event KillRecorded(address indexed player, uint64 kills, uint64 timestamp);
-    event StartedGame(address indexed player);
+   
 
     // Constructor to set up the initial server role
     constructor(address admin) {
