@@ -19,7 +19,9 @@ contract MetaDogeUnityKillTracker is AccessControl {
 
     // Event to log when a kill is recorded
     event KillRecorded(address indexed player, uint64 kills, uint64 timestamp);
-   
+
+    // Event to log when a game is started
+    event StartedGame(address indexed player, uint64 gamesPlayed);
 
     // Constructor to set up the initial server role
     constructor(address admin) {
@@ -41,7 +43,9 @@ contract MetaDogeUnityKillTracker is AccessControl {
     // Function to start a game and update games played (restricted to SERVER_ROLE)
     function startGame(address player) external onlyRole(SERVER_ROLE) {
         players[player].gamesPlayed += 1; // Increment games played
-       
+
+        // Emit event to log the game start
+        emit StartedGame(player, players[player].gamesPlayed);
     }
 
     // Public getters are automatically generated for public variables like `players`
