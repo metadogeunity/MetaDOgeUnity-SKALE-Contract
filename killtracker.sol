@@ -25,8 +25,8 @@ contract MetaDogeUnityKillTracker is AccessControl {
 
     // Constructor to set up the initial server role
     constructor(address admin) {
-        _setupRole(DEFAULT_ADMIN_ROLE, admin);
-        _setupRole(SERVER_ROLE, admin);
+        _grantRole(DEFAULT_ADMIN_ROLE, admin);
+        _grantRole(SERVER_ROLE, admin);
     }
 
     // Function to record a kill for the player (restricted to SERVER_ROLE)
