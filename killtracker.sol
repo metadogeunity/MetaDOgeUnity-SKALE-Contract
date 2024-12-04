@@ -34,7 +34,7 @@ contract MetaDogeUnityKillTracker is AccessControl {
 
     // Function to whitelist a player (grant PLAYER_ROLE)
     function whitelistPlayer(address player) external onlyRole(SERVER_ROLE) {
-        grantRole(PLAYER_ROLE, player);
+        _grantRole(PLAYER_ROLE, player);
     }
 
     // Function to initialize a new player (restricted to PLAYER_ROLE)
@@ -51,8 +51,7 @@ contract MetaDogeUnityKillTracker is AccessControl {
     }
 
     // Function to record a kill for the player (restricted to SERVER_ROLE)
-    function recordKill(address player) external onlyRole(SERVER_ROLE) {
-        require(players[player].gamesPlayed > 0, "Player not initialized");
+    function recordKill(address player) external onlyRole(PLAYER_ROLE) {
 
         Player storage playerData = players[player];
         playerData.kills += 1; // Increment kills
@@ -62,8 +61,7 @@ contract MetaDogeUnityKillTracker is AccessControl {
     }
 
     // Function to start a game and update games played (restricted to SERVER_ROLE)
-    function startGame(address player) external onlyRole(SERVER_ROLE) {
-        require(players[player].gamesPlayed > 0 || players[player].kills > 0, "Player not initialized");
+    function startGame(address player) external onlyRole(PLAYER_ROLE) {
 
         players[player].gamesPlayed += 1; // Increment games played
         emit StartedGame(player);
